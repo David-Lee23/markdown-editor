@@ -1,9 +1,55 @@
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --header-bg: #f8f8f8;
+  --divider: #ccc;
+  --editor-bg: #f9f9f9;
+  --preview-bg: #ffffff;
+  --toggle-track: #ccc;
+  --blockquote-bg: #f6f8fa;
+  --blockquote-text: #24292f;
+  --blockquote-border: #d0d7de;
+}
+
+.dark-mode {
+  --bg: #0f1117;
+  --text: #f0f0f0;
+  --header-bg: #1c1f26;
+  --divider: #333;
+  --editor-bg: #181a1f;
+  --preview-bg: #181a1f;
+  --toggle-track: #444;
+  --blockquote-bg: #161b22;
+  --blockquote-text: #adbac7;
+  --blockquote-border: #30363d;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body,
+#editor,
+#preview,
+#preview pre,
+#preview blockquote {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
 header {
-  background: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
+  background-color: var(--header-bg);
+  color: var(--text);
+  border-bottom: 1px solid var(--divider);
   padding: 0 0.5rem;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -17,7 +63,6 @@ header {
   flex-direction: column;
   text-align: center;
   padding: clamp(0.25rem, 2vw, 0.75rem) 1rem;
-
 }
 
 .header-text {
@@ -27,7 +72,6 @@ header {
 .header-content h1 {
   margin: 0;
   font-size: 1.75rem;
-  color: #24292f;
   font-weight: 600;
 }
 
@@ -36,23 +80,13 @@ header {
   text-align: center;
   margin-top: 0.3rem;
   font-size: 0.95rem;
-  color: #6a737d;
-}
-
-
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: sans-sarif;
 }
 
 #app {
   display: flex;
   flex: 1;
   width: 100%;
-  height: 100%
+  height: 100%;
 }
 
 #editor {
@@ -61,11 +95,11 @@ body {
   padding: 1rem;
   font-family: monospace;
   font-size: 1rem;
-  border: none;
+  border: 1px solid var(--divider);
   outline: none;
   resize: none;
-  background: #f9f9f9;
-  color: #000;
+  background-color: var(--editor-bg);
+  color: var(--text);
 }
 
 #preview {
@@ -73,19 +107,19 @@ body {
   height: 100%;
   padding: 1rem;
   overflow-y: auto;
-  background-color: #fff;
-  border-left: 1px solid #ccc;
-  color: #000;
+  background-color: var(--preview-bg);
+  border: 1px solid var(--divider);
+  color: var(--text);
 }
 
 #preview blockquote {
   display: inline-block;
   padding: 0.8em 1em;
-  border-left: 8px solid #d0d7de;
+  border-left: 8px solid var(--blockquote-border);
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  background-color: #f6f8fa;
-  color: #24292f;
+  background-color: var(--blockquote-bg);
+  color: var(--blockquote-text);
   font-size: 1rem;
   line-height: 1.5;
   max-width: 100%;
@@ -115,7 +149,7 @@ body {
 #resizer {
   width: 4px;
   cursor: col-resize;
-  background-color: #ccc;
+  background-color: var(--divider);
   height: 100%;
 }
 
@@ -123,97 +157,45 @@ body {
   background-color: #999;
 }
 
-body.dark {
-  background-color: #0d1117;
-  color: #c9d1d9;
-}
-
-body.dark #editor {
-  background: #161b22;
-  color: #c9d1d9;
-}
-
-body.dark #preview {
-  background-color: #0d1117;
-  color: #c9d1d9;
-  border-left: 1px solid #30363d;
-}
-
-/* Blockquote in dark mode */
-body.dark #preview blockquote {
-  background-color: #161b22;
-  color: #adbac7;
-  border-left-color: #30363d;
-}
-
-/* Code block in dark mode */
-body.dark #preview pre {
+.dark-mode #preview pre {
   background-color: #161b22;
   color: #c9d1d9;
   border: none;
 }
 
-/* Toggle button styling */
-#darkModeToggle {
+#darkToggle {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.4rem 0.8rem;
-  background: #f0f0f0;
-  border: none;
-  border-radius: 4px;
+  top: 1.5rem;
+  right: 2rem;
+  width: 2.8rem;
+  height: 1.5rem;
+  background: var(--toggle-track);
+  border-radius: 999px;
   cursor: pointer;
-  z-index: 1000;
+  transition: background 0.3s ease;
+  appearance: none;
 }
 
-body.dark #darkModeToggle {
-  background: #21262d;
-  color: #c9d1d9;
-}
-
-.switch {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 24px;
-}
-
-.slider:before {
-  position: absolute;
+#darkToggle::before {
   content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
+  display: block;
+  width: 1.3rem;
+  height: 1.3rem;
+  margin: 0.1rem;
+  background: #fff;
   border-radius: 50%;
+  transition: transform 0.3s ease;
 }
 
-input:checked + .slider {
-  background-color: #333;
+#darkToggle:checked::before {
+  transform: translateX(1.3rem);
 }
 
-input:checked + .slider:before {
-  transform: translateX(26px);
+.markdown-body {
+  color: var(--text);
+  background: transparent;
+}
+
+.dark-mode .markdown-body {
+  background: transparent;
 }

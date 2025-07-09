@@ -56,14 +56,22 @@ document.addEventListener("pointerup", () => {
   document.body.style.cursor = "default";
 });
 
-const darkToggle = document.getElementById("darkModeToggle");
+const darkToggle = document.getElementById("darkToggle");
 const hlTheme = document.getElementById("hlTheme");
 
-darkToggle.addEventListener("change", () => {
-  const isDark = darkToggle.checked;
-  document.body.classList.toggle("dark", isDark);
-  // this swaps light & dark themes
-  hlTheme.href = isDark
-    ? "highlight.js/styles/github-dark.css"
-    : "highlight.js/styles/github.css";
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  darkToggle.checked = true;
+  document.body.classList.add('dark-mode');
+  hlTheme.href = "https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/github-dark.css";
+}
+
+darkToggle.addEventListener("change", function () {
+  document.body.classList.toggle("dark-mode", this.checked);
+
+  // Swap highlight.js theme
+  if (this.checked) {
+    hlTheme.href = "https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/github-dark.css";
+  } else {
+    hlTheme.href = "https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/github.css";
+  }
 });

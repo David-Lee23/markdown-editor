@@ -3,7 +3,7 @@
   <head>
     <link id="hlTheme"
 	rel="stylesheet"
-	href="highlight.js/styles/github.css">
+	href="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/github.css">
     <meta charset="UTF-8" />
     <title>Live Markdown Editor</title>
     <link rel="stylesheet" href="/src/style.css" />	
@@ -15,16 +15,13 @@
 	  <h1>Live Markdown Editor</h1>
 	  <p>Write proper markdown syntax on the left and seee it redered live on the right!</p>
 	</div>
-        <label class="switch">
-	    <input type="checkbox" id="darkModeToggle">
-  	    <span class="slider"></span>
-        </label>
+        <input type="checkbox" id="darkToggle">
       </div>
     </header>
     <div id="app">
 	<textarea id="editor" placeholder="type Markdown Here..."></textarea>
 	<div id="resizer"></div>
-	<div id="preview"></div>
+	<div id="preview" class="markdown-body"></div>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
