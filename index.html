@@ -1,17 +1,29 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link id="hlTheme"
+	rel="stylesheet"
+	href="highlight.js/styles/github.css">
     <meta charset="UTF-8" />
     <title>Live Markdown Editor</title>
     <link rel="stylesheet" href="/src/style.css" />	
   </head>
   <body>
     <header>
-	<h1>Live Markdown Editor</h1>
-	<p>Write proper markdown syntax on the left and seee it redered live on the right!</p>
+      <div class="header-content">
+	<div class="header-text">
+	  <h1>Live Markdown Editor</h1>
+	  <p>Write proper markdown syntax on the left and seee it redered live on the right!</p>
+	</div>
+        <label class="switch">
+	    <input type="checkbox" id="darkModeToggle">
+  	    <span class="slider"></span>
+        </label>
+      </div>
     </header>
     <div id="app">
 	<textarea id="editor" placeholder="type Markdown Here..."></textarea>
+	<div id="resizer"></div>
 	<div id="preview"></div>
     </div>
     <script type="module" src="/src/main.js"></script>

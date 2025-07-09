@@ -23,12 +23,13 @@ marked.setOptions({
 const resizer = document.getElementById("resizer");
 let isResizing = false;
 
-resizer.addEventListener("mousedown", (e) => {
+resizer.addEventListener("pointerdown", (e) => {
   isResizing = true;
   document.body.style.cursor = "col-resize";
+  e.target.setPointerCapture(e.pointerId);
 });
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("pointermove", (e) => {
   if (!isResizing) return;
 
   //get total width of container
@@ -50,7 +51,19 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
-document.addEventListener("mouseup", () => {
+document.addEventListener("pointerup", () => {
   isResizing = false;
   document.body.style.cursor = "default";
+});
+
+const darkToggle = document.getElementById("darkModeToggle");
+const hlTheme = document.getElementById("hlTheme");
+
+darkToggle.addEventListener("change", () => {
+  const isDark = darkToggle.checked;
+  document.body.classList.toggle("dark", isDark);
+  // this swaps light & dark themes
+  hlTheme.href = isDark
+    ? "highlight.js/styles/github-dark.css"
+    : "highlight.js/styles/github.css";
 });
