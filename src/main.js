@@ -75,3 +75,18 @@ darkToggle.addEventListener("change", function () {
     hlTheme.href = "https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/github.css";
   }
 });
+
+// --- Markdown-cheat-sheet toggle ---------------------------------
+const cheatToggle = document.getElementById("cheat-toggle");
+const cheatSheet  = document.getElementById("cheat-sheet");
+
+cheatToggle.addEventListener("click", () => {
+  // toggle() returns the new state (true = now open)
+  const isOpen = cheatSheet.classList.toggle("open");
+
+  cheatToggle.classList.toggle("open", isOpen);
+  cheatToggle.textContent = isOpen
+      ?" Markdown Cheat Sheet ⫸"
+      : "⫷ Markdown Cheat Sheet";
+});
+
